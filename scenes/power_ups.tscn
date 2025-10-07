@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://blb6y8u33k7ul"]
+
+[ext_resource type="Script" path="res://scripts/power_ups.gd" id="1_obrmu"]
+[ext_resource type="Texture2D" uid="uid://dphh3wuhqwpei" path="res://assets/powerups/shoot power-up.png" id="1_wt404"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdsw4"]
+radius = 17.0
+
+[node name="PowerUps" type="RigidBody2D"]
+collision_layer = 20
+collision_mask = 4
+gravity_scale = 0.2
+script = ExtResource("1_obrmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_wt404")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gdsw4")

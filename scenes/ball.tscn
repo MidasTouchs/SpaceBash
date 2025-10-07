@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://b07i6fev5m7ws"]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_tk7at"]
+[ext_resource type="Texture2D" uid="uid://brrllii04dglo" path="res://assets/bricks and ball/glow.png" id="2_gp2bo"]
+[ext_resource type="Texture2D" uid="uid://dy1pgtwspg7qb" path="res://assets/bricks and ball/dust.png" id="3_4mwoe"]
+[ext_resource type="AudioStream" uid="uid://bg5r6opmax104" path="res://assets/music and sounds/pop-402322.mp3" id="4_or61f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxxey"]
+size = Vector2(78, 77)
+
+[sub_resource type="Curve" id="Curve_8kuys"]
+_data = [Vector2(0.00370371, 1), 0.0, 0.0, 0, 0, Vector2(0.751852, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_dhksf"]
+offsets = PackedFloat32Array(0, 0.840708)
+colors = PackedColorArray(0, 0.882353, 0.360784, 1, 1, 1, 1, 1)
+
+[node name="Ball" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_tk7at")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_gp2bo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_fxxey")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 1000
+lifetime = 0.2
+texture = ExtResource("3_4mwoe")
+emission_shape = 1
+emission_sphere_radius = 34.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.02
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_8kuys")
+color = Color(1, 1, 1, 0.6)
+color_ramp = SubResource("Gradient_dhksf")
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_or61f")
+bus = &"Sounds"

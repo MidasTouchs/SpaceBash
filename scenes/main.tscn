@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://bq4u132e465l"]
+
+[ext_resource type="PackedScene" uid="uid://doreaaesshrwm" path="res://scenes/paddle.tscn" id="1_a8i7e"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_nhn84"]
+[ext_resource type="Texture2D" uid="uid://cq7w8m5bv1fnm" path="res://assets/bg/IMG_5083.JPG" id="2_2ckgy"]
+[ext_resource type="PackedScene" uid="uid://b07i6fev5m7ws" path="res://scenes/ball.tscn" id="2_uy6sx"]
+[ext_resource type="PackedScene" uid="uid://cpl8c6nkyd5lc" path="res://scenes/ui.tscn" id="5_k1kf8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yu83h"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tfmb6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1nvjo"]
+normal = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq5q3"]
+size = Vector2(484, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jv10r"]
+size = Vector2(694, 20)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nhn84")
+
+[node name="Img5083" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 1, 0.866667)
+position = Vector2(584, 438)
+scale = Vector2(0.480667, 0.529762)
+texture = ExtResource("2_2ckgy")
+
+[node name="Paddle" parent="." node_paths=PackedStringArray("ball", "ui") instance=ExtResource("1_a8i7e")]
+position = Vector2(235, 810)
+scale = Vector2(0.1, 0.1)
+ball = NodePath("../Ball")
+ui = NodePath("../UI")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 428)
+
+[node name="Ball" parent="." node_paths=PackedStringArray("Paddle", "Brick", "ui") instance=ExtResource("2_uy6sx")]
+scale = Vector2(0.2, 0.2)
+Paddle = NodePath("../Paddle")
+Brick = NodePath("")
+ui = NodePath("../UI")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_mask = 9
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(480, 289)
+shape = SubResource("WorldBoundaryShape2D_yu83h")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1, 177)
+shape = SubResource("WorldBoundaryShape2D_tfmb6")
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+shape = SubResource("WorldBoundaryShape2D_1nvjo")
+
+[node name="Deathzone" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(243, 891)
+shape = SubResource("RectangleShape2D_iq5q3")
+
+[node name="UI" parent="." instance=ExtResource("5_k1kf8")]
+
+[node name="EndZone" type="Area2D" parent="."]
+position = Vector2(249, 961)
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndZone"]
+position = Vector2(4, -29)
+shape = SubResource("RectangleShape2D_jv10r")
+
+[connection signal="body_entered" from="Deathzone" to="Ball" method="_on_deathzone_body_entered"]
+[connection signal="body_entered" from="EndZone" to="." method="_on_end_zone_body_entered"]

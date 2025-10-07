@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bg5r6opmax104"
+path="res://.godot/imported/pop-402322.mp3-6b0400329fd15abb483841e1769dec2f.mp3str"
+
+[deps]
+
+source_file="res://assets/music and sounds/pop-402322.mp3"
+dest_files=["res://.godot/imported/pop-402322.mp3-6b0400329fd15abb483841e1769dec2f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://dccsqejtfg5ku"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_ap5c8"]
+[ext_resource type="FontFile" uid="uid://dkir0p6c3kexs" path="res://assets/font/VT323-Regular.ttf" id="2_eb21n"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_ap5c8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 119.5
+offset_top = 14.0
+offset_right = 168.5
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_eb21n")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.5
+offset_top = 15.0
+offset_right = 24.5
+offset_bottom = 57.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

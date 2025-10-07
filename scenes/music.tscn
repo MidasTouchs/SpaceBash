@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://doqjtcpvb4aqn"]
+
+[ext_resource type="AudioStream" uid="uid://bm40wp73gimiw" path="res://assets/music and sounds/electro-summer-positive-party-141081.mp3" id="1_dobek"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_dobek")
+autoplay = true
+bus = &"Music"

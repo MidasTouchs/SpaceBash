@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://x6ei8bjnmfjq"]
+
+[ext_resource type="Texture2D" uid="uid://brrllii04dglo" path="res://assets/bricks and ball/glow.png" id="1_gmyvc"]
+[ext_resource type="Script" path="res://scripts/extras.gd" id="1_p1n2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvqj5"]
+size = Vector2(16, 16)
+
+[node name="Extras" type="CharacterBody2D"]
+collision_layer = 17
+script = ExtResource("1_p1n2c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_gmyvc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vvqj5")

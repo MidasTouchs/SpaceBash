@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba6v6y6og0nf7"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_54whb"]
+[ext_resource type="Texture2D" uid="uid://mc8h7365owx5" path="res://assets/bricks and ball/IMG_5095.PNG" id="1_ydg31"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b012"]
+radius = 4.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_54whb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_ydg31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5b012")

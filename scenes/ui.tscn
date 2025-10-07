@@ -1,0 +1,170 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpl8c6nkyd5lc"]
+
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_kdq6x"]
+[ext_resource type="FontFile" uid="uid://dkir0p6c3kexs" path="res://assets/font/VT323-Regular.ttf" id="2_1bqus"]
+[ext_resource type="Texture2D" uid="uid://brrllii04dglo" path="res://assets/bricks and ball/glow.png" id="3_52ub8"]
+
+[sub_resource type="FontVariation" id="FontVariation_lfyvv"]
+base_font = ExtResource("2_1bqus")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee1rf"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.701961)
+shadow_size = 3
+shadow_offset = Vector2(-3, 3)
+
+[sub_resource type="Theme" id="Theme_iykai"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ee1rf")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tdxe"]
+bg_color = Color(0, 0.32549, 0.733333, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.811765)
+shadow_size = 3
+shadow_offset = Vector2(-3, 3)
+
+[sub_resource type="Theme" id="Theme_buoll"]
+Panel/styles/panel = SubResource("StyleBoxFlat_6tdxe")
+
+[sub_resource type="Theme" id="Theme_i36he"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_kdq6x")
+
+[node name="Glow2" type="Sprite2D" parent="."]
+modulate = Color(0, 0.678431, 1, 0.615686)
+position = Vector2(456.781, 33.625)
+scale = Vector2(0.0980835, 0.0983887)
+texture = ExtResource("3_52ub8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_lfyvv")
+theme_override_font_sizes/font_size = 32
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme = SubResource("Theme_iykai")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Gameover" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1bqus")
+theme_override_font_sizes/font_size = 40
+text = "GAMEOVER"
+horizontal_alignment = 1
+
+[node name="RestartBtn" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1bqus")
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[node name="PauseContainer" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PauseContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme = SubResource("Theme_buoll")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Gameover" type="Label" parent="PauseContainer/Panel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1bqus")
+theme_override_font_sizes/font_size = 40
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ContinueBtn" type="Button" parent="PauseContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1bqus")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[node name="QuitBtn" type="Button" parent="PauseContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1bqus")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="Glow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(244, 570)
+scale = Vector2(0.175537, 0.174805)
+texture = ExtResource("3_52ub8")
+
+[node name="PauseBtn" type="Button" parent="."]
+texture_filter = 1
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 54.0
+offset_bottom = 38.0
+theme = SubResource("Theme_i36he")
+theme_override_font_sizes/font_size = 20
+text = "I I"
+
+[connection signal="focus_entered" from="CenterContainer/Panel/VBoxContainer/RestartBtn" to="." method="_on_restart_btn_focus_entered"]
+[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="focus_entered" from="PauseContainer/Panel/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_focus_entered"]
+[connection signal="pressed" from="PauseContainer/Panel/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="focus_entered" from="PauseContainer/Panel/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_focus_entered"]
+[connection signal="pressed" from="PauseBtn" to="." method="_on_pause_btn_pressed"]

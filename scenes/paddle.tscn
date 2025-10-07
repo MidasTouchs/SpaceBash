@@ -1,0 +1,127 @@
+[gd_scene load_steps=22 format=3 uid="uid://doreaaesshrwm"]
+
+[ext_resource type="Script" path="res://scripts/paddle.gd" id="1_h0x74"]
+[ext_resource type="Texture2D" uid="uid://cf66mjt1hugop" path="res://assets/paddles/IMG_5097.PNG" id="1_p867u"]
+[ext_resource type="Texture2D" uid="uid://bxfgrepjdxqos" path="res://assets/pads/IMG_5118.PNG" id="2_51ubo"]
+[ext_resource type="Texture2D" uid="uid://b3oao8ifkanst" path="res://assets/paddles/IMG_5098.PNG" id="2_wr4sd"]
+[ext_resource type="Texture2D" uid="uid://dkygaukmakg1i" path="res://assets/pads/IMG_5119.PNG" id="3_dvpna"]
+[ext_resource type="Texture2D" uid="uid://k42n5ny7xv24" path="res://assets/paddles/IMG_5099.PNG" id="3_twhmv"]
+[ext_resource type="Texture2D" uid="uid://b2k02oc4b4p5x" path="res://assets/paddles/IMG_5101.PNG" id="4_1e40c"]
+[ext_resource type="Texture2D" uid="uid://ccwy1w74fwqfc" path="res://assets/pads/IMG_5120.PNG" id="4_k65tj"]
+[ext_resource type="Texture2D" uid="uid://c616itx8tvig0" path="res://assets/pads/IMG_5121.PNG" id="5_xeen8"]
+[ext_resource type="Texture2D" uid="uid://qgdnyx4ysq3r" path="res://assets/pads/IMG_5122.PNG" id="10_i1btg"]
+[ext_resource type="Texture2D" uid="uid://crxgjlircw1s4" path="res://assets/pads/IMG_5114.PNG" id="10_nrpbj"]
+[ext_resource type="Texture2D" uid="uid://nylq64i8jjx7" path="res://assets/pads/IMG_5115.PNG" id="11_cpscc"]
+[ext_resource type="Texture2D" uid="uid://f6bgn37wpja3" path="res://assets/pads/IMG_5123.PNG" id="11_muit1"]
+[ext_resource type="Texture2D" uid="uid://pddm4hdbsup1" path="res://assets/pads/IMG_5124.PNG" id="12_c0vft"]
+[ext_resource type="Texture2D" uid="uid://3y4ihxrx3gt8" path="res://assets/pads/IMG_5116.PNG" id="12_n0mp4"]
+[ext_resource type="Texture2D" uid="uid://c852qom37fa56" path="res://assets/pads/IMG_5117.PNG" id="13_7hrfq"]
+[ext_resource type="Texture2D" uid="uid://cyxdhc1gxkw8d" path="res://assets/pads/IMG_5125.PNG" id="13_owleo"]
+[ext_resource type="AudioStream" uid="uid://dwl6vdt1slx0" path="res://assets/music and sounds/button-394464.mp3" id="18_p8l4v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8x5b1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_51ubo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dvpna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k65tj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xeen8")
+}],
+"loop": true,
+"name": &"big",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p867u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wr4sd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_twhmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1e40c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_nrpbj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cpscc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_n0mp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7hrfq")
+}],
+"loop": true,
+"name": &"shooter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_i1btg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_muit1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c0vft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_owleo")
+}],
+"loop": true,
+"name": &"speed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaynl"]
+size = Vector2(713, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kllhr"]
+size = Vector2(710, 26.5)
+
+[node name="Paddle" type="CharacterBody2D"]
+script = ExtResource("1_h0x74")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0.913725, 1, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_8x5b1")
+animation = &"shooter"
+autoplay = "default"
+frame = 1
+frame_progress = 0.619815
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -137)
+shape = SubResource("RectangleShape2D_gaynl")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -172.25)
+shape = SubResource("RectangleShape2D_kllhr")
+
+[node name="Sounding" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_p8l4v")
+bus = &"Sounds"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

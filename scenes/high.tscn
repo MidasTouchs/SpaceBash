@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://btnkayj7kvtog"]
+
+[ext_resource type="Script" path="res://scripts/high.gd" id="1_c2slc"]
+[ext_resource type="Texture2D" uid="uid://c3ujarkwhmhrt" path="res://assets/bg/bash cover 2.jpg" id="1_fo2fc"]
+[ext_resource type="FontFile" uid="uid://dkir0p6c3kexs" path="res://assets/font/VT323-Regular.ttf" id="2_yack4"]
+[ext_resource type="Texture2D" uid="uid://ddhby5yqvugpk" path="res://assets/ui/IMG_5103.PNG" id="3_cli05"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ayy4"]
+texture = ExtResource("3_cli05")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+modulate_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t77fd"]
+texture = ExtResource("3_cli05")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+modulate_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_thodv"]
+texture = ExtResource("3_cli05")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cxkch"]
+texture = ExtResource("3_cli05")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+modulate_color = Color(0, 1, 0, 1)
+
+[sub_resource type="Theme" id="Theme_3g6xp"]
+Button/styles/focus = SubResource("StyleBoxTexture_2ayy4")
+Button/styles/hover = SubResource("StyleBoxTexture_t77fd")
+Button/styles/normal = SubResource("StyleBoxTexture_thodv")
+Button/styles/pressed = SubResource("StyleBoxTexture_cxkch")
+
+[node name="High" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c2slc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(251, 444)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_fo2fc")
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_yack4")
+theme_override_font_sizes/font_size = 32
+text = "HIGHSCORE
+
+LEVEL:
+
+SCORE:"
+horizontal_alignment = 1
+
+[node name="BackBtn" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 68.0
+offset_bottom = 43.0
+theme = SubResource("Theme_3g6xp")
+theme_override_fonts/font = ExtResource("2_yack4")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]

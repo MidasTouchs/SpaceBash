@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=3 uid="uid://yvf8qtnxq2xd"]
+
+[ext_resource type="Script" path="res://scripts/info.gd" id="1_cbybm"]
+[ext_resource type="Texture2D" uid="uid://c3ujarkwhmhrt" path="res://assets/bg/bash cover 2.jpg" id="1_vncf0"]
+[ext_resource type="FontFile" uid="uid://dkir0p6c3kexs" path="res://assets/font/VT323-Regular.ttf" id="2_c1jeu"]
+[ext_resource type="Texture2D" uid="uid://cuhsyn8qubt64" path="res://assets/powerups/fire.PNG" id="3_tslqe"]
+[ext_resource type="Texture2D" uid="uid://c7pcx5bs46hm0" path="res://assets/powerups/ice.PNG" id="4_4wqmh"]
+[ext_resource type="Texture2D" uid="uid://ddhby5yqvugpk" path="res://assets/ui/IMG_5103.PNG" id="5_2gidp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rcctn"]
+texture = ExtResource("5_2gidp")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+modulate_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oc7se"]
+texture = ExtResource("5_2gidp")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+modulate_color = Color(0, 0, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tep5q"]
+texture = ExtResource("5_2gidp")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qxm5l"]
+texture = ExtResource("5_2gidp")
+expand_margin_left = 30.0
+expand_margin_top = 20.0
+expand_margin_right = 30.0
+expand_margin_bottom = 20.0
+modulate_color = Color(0, 1, 0, 1)
+
+[sub_resource type="Theme" id="Theme_4cww3"]
+Button/styles/focus = SubResource("StyleBoxTexture_rcctn")
+Button/styles/hover = SubResource("StyleBoxTexture_oc7se")
+Button/styles/normal = SubResource("StyleBoxTexture_tep5q")
+Button/styles/pressed = SubResource("StyleBoxTexture_qxm5l")
+
+[node name="Info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cbybm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(251, 444)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_vncf0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 293.0
+offset_right = 2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_c1jeu")
+theme_override_font_sizes/font_size = 24
+text = "Grab your space paddle and get ready for a 
+cosmic challenge! Your mission: control the 
+ball, break the bricks, and survive as long 
+as you can.
+Bricks: Red, Yellow, and Blue bricks each 
+require a different number of hits to destroy.
+Lives: You only get 3—make them count!
+Levels: With every level, the ball speeds 
+up and the bricks get tougher. Bricks 
+appear at random, so stay sharp.
+Controls: Use the paddle to guide the 
+ball—hit with the left side to move left, 
+the right side to move right.
+Powerups & Hazards: Collect 4 special 
+powerups to help you, 
+but beware—dangerous objects lurk among them.
+  Avoid:
+Play now and see how far you can go!
+Enjoy the ride through space, 
+and bash those bricks! "
+
+[node name="Fire" type="Sprite2D" parent="."]
+position = Vector2(103, 751)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("3_tslqe")
+
+[node name="Ice" type="Sprite2D" parent="."]
+position = Vector2(129, 752)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("4_4wqmh")
+
+[node name="BackBtn" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 68.0
+offset_bottom = 43.0
+theme = SubResource("Theme_4cww3")
+theme_override_fonts/font = ExtResource("2_c1jeu")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]
